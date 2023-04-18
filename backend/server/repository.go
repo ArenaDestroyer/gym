@@ -9,11 +9,13 @@ import (
 type Repository struct {
 	// AuthRepository
 	UserRepository
+	WorkoutRepository
 }
 
 func NewRepository(db *sql.DB) *Repository {
 	return &Repository{
-		UserRepository: NewUserRepository(db),
+		UserRepository:    NewUserRepository(db),
+		WorkoutRepository: NewWorkoutRepository(db),
 	}
 }
 
@@ -157,4 +159,103 @@ func (ur *userRepo) UpdateUser(*User) (*User, error) {
 
 func (ur *userRepo) DeleteUser(id int) error {
 	return nil
+}
+
+type WorkoutRepository interface {
+	CreateWorkout(*Workout) (*Workout, error)
+	GetWorkout(int) (*Workout, error)
+	GetAllWorkouts() ([]*Workout, error)
+	GetLikedWorkouts() ([]*Workout, error)
+}
+
+type workoutRepo struct {
+	db *sql.DB
+}
+
+// WORKOUT
+func NewWorkoutRepository(db *sql.DB) WorkoutRepository {
+	return &workoutRepo{
+		db: db,
+	}
+}
+
+func (r *workoutRepo) CreateWorkout(workout *Workout) (*Workout, error) {
+	return nil, nil
+}
+
+func (r *workoutRepo) GetWorkout(workoutId int) (*Workout, error) {
+	return nil, nil
+}
+
+func (r *workoutRepo) GetAllWorkouts() ([]*Workout, error) {
+	return nil, nil
+}
+
+func (r *workoutRepo) GetLikedWorkouts() ([]*Workout, error) {
+	return nil, nil
+}
+
+// DETAIL
+type DetailRepository interface {
+	CreateDetail(*Detail) (*Detail, error)
+	GetDetail(int) (*Detail, error)
+	GetWorkoutDetails(int) ([]*Detail, error)
+}
+
+type detailRepo struct {
+	db *sql.DB
+}
+
+func NewDetailRepository(db *sql.DB) DetailRepository {
+	return &detailRepo{
+		db: db,
+	}
+}
+
+func (r *detailRepo) CreateDetail(detail *Detail) (*Detail, error) {
+	return nil, nil
+}
+
+func (r *detailRepo) GetDetail(detailId int) (*Detail, error) {
+	return nil, nil
+}
+
+func (r *detailRepo) GetWorkoutDetails(workout_id int) ([]*Detail, error) {
+	return nil, nil
+}
+
+// CATEGORY
+
+type CategoryRepository interface {
+	CreateCategory(*Category) (*Category, error)
+	GetCategory(int) (*Category, error)
+	GetWorkoutCategories(int) ([]*Category, error)
+	GetAllCategories() ([]*Category, error)
+	// AddCategories(workout_id int, category_ids Category)
+}
+
+type categoryRepo struct {
+	db *sql.DB
+}
+
+func NewCategoryRepository(db *sql.DB) CategoryRepository {
+	return &categoryRepo{
+		db: db,
+	}
+}
+
+func (r *categoryRepo) CreateCategory(category *Category) (*Category, error) {
+	return nil, nil
+}
+
+func (r *categoryRepo) GetCategory(category_id int) (*Category, error) {
+	return nil, nil
+}
+
+func (r *categoryRepo) GetWorkoutCategories(workout_id int) ([]*Category, error) {
+	return nil, nil
+}
+
+func (r *categoryRepo) GetAllCategories() ([]*Category, error) {
+	return nil, nil
 }

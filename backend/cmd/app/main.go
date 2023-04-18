@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"gym/server"
-	"gym/server/db/migrations"
+	migrations "gym/server/db"
 
 	_ "github.com/mattn/go-sqlite3"
 )

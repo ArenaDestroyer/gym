@@ -3,8 +3,9 @@ package migrations
 import (
 	"database/sql"
 	"fmt"
-	"log"
 	"os"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func CreateTable(db *sql.DB, path string) error {
@@ -22,7 +23,8 @@ func CreateTable(db *sql.DB, path string) error {
 			return err
 		}
 		if _, err := db.Exec(string(data)); err != nil {
-			log.Println(err)
+			fmt.Println(string(data))
+			return err
 		}
 	}
 	return nil

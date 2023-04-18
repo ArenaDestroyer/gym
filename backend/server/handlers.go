@@ -134,7 +134,7 @@ func (h *Handler) Login(w http.ResponseWriter, r *http.Request) {
 			Password: Password{Plaintext: input.Password},
 		}
 
-		err = h.Service.AuthService.Login(user)
+		return_token, err := h.Service.AuthService.Login(user)
 		if err != nil {
 			switch err {
 			case ErrUserNotFound:
@@ -159,7 +159,10 @@ func (h *Handler) Login(w http.ResponseWriter, r *http.Request) {
 		cookie.Path = "/"
 		cookie.HttpOnly = true
 		http.SetCookie(w, &cookie)
-		writeJSON(w, http.StatusOK, envelope{"token": user.Token}, nil)
+		err = writeJSON(w, http.StatusOK, envelope{"access_token": return_token}, nil)
+		if err != nil {
+			h.serverErrorResponse(w, r, err)
+		}
 	}
 }
 

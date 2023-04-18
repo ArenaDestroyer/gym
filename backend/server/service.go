@@ -33,7 +33,7 @@ func NewService(repository *Repository) *Service {
 
 type AuthService interface {
 	Signup(*Validator, *User) (*User, error)
-	Login(*User) error
+	Login(*User) (*string, error)
 	Logout(*User) error
 	ParseToken(token string) (*User, error)
 	DeleteToken(token string) error
@@ -73,15 +73,15 @@ func (as *authService) Signup(v *Validator, user *User) (*User, error) {
 	return u, nil
 }
 
-func (as *authService) Login(user *User) error {
+func (as *authService) Login(user *User) (*string, error) {
 	u, err := as.ur.GetUserByEmail(user.Email)
 	if err != nil {
-		return ErrUserNotFound
+		return nil, ErrUserNotFound
 	}
 
 	ok, err := u.Password.Matches(user.Password.Plaintext)
 	if err != nil || !ok {
-		return err
+		return nil, err
 	}
 
 	sessionToken := uuid.NewString()
@@ -91,10 +91,10 @@ func (as *authService) Login(user *User) error {
 	user.ID = u.ID
 	err = as.ur.SaveToken(user)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return user.Token, nil
 }
 
 func (as *authService) Logout(user *User) error {

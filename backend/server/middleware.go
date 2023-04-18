@@ -28,7 +28,7 @@ func (h *Handler) userIdentity(next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 		if user.Expires.Before(time.Now()) {
-			if err := h.Service.DeleteToken(c.Value); err != nil {
+			if err = h.Service.DeleteToken(c.Value); err != nil {
 				h.errorResponse(w, r, 500, err)
 				return
 			}

@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"gym/server/db/migrations"
+	migrations "gym/server/db"
 )
 
 func main() {

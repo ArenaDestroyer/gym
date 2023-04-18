@@ -6,15 +6,6 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-type User struct {
-	ID       int        `json:"id"`
-	Name     string     `json:"name"`
-	Email    string     `json:"email"`
-	Password Password   `json:"-"`
-	Token    *string    `json:"-"`
-	Expires  *time.Time `json:"-"`
-}
-
 type Password struct {
 	Plaintext string
 	Hash      []byte
@@ -39,4 +30,35 @@ func (p *Password) Matches(plaintextPassword string) (bool, error) {
 	}
 
 	return true, nil
+}
+
+type Workout struct {
+	Id         int
+	Title      string
+	Details    []*Detail
+	Categories []*Category
+}
+
+type Detail struct {
+	Id          int
+	Name        string
+	Image       string
+	Description string
+	Time        int
+	Rep         int
+}
+
+type Category struct {
+	Id   int
+	Name string
+}
+
+type User struct {
+	ID            int        `json:"id"`
+	Name          string     `json:"name"`
+	Email         string     `json:"email"`
+	Password      Password   `json:"-"`
+	Token         *string    `json:"-"`
+	Expires       *time.Time `json:"-"`
+	LikedWorkouts []*Workout `json:"liked"`
 }
