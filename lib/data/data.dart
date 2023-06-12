@@ -1,5 +1,3 @@
-
-
 import 'package:yoga_training_app/models/course.dart';
 import 'package:yoga_training_app/models/style.dart';
 
@@ -19,27 +17,24 @@ final _legCrossStyle = Style(
   time: 6,
 );
 
-final styles = [_standStyle,_sittingStyle,_legCrossStyle];
+final styles = [_standStyle, _sittingStyle, _legCrossStyle];
 
 final _course1 = Course(
-  imageUrl: 'assets/images/course1.jpg',
-  name: 'Advance Stretchings',
-  time: 45,
-  students: 'Advanced'
-);
+    imageUrl: 'assets/images/course1.jpg',
+    name: 'Advance Stretchings',
+    time: 45,
+    students: 'Advanced');
 
 final _course2 = Course(
     imageUrl: 'assets/images/course2.jpg',
-    name: 'Daily Yoga',
+    name: 'Biceps',
     time: 30,
-    students: 'Intermediate'
-);
+    students: 'Intermediate');
 
 final _course3 = Course(
     imageUrl: 'assets/images/course3.jpg',
-    name: 'Meditation',
+    name: 'Upper body',
     time: 20,
-    students: 'Beginner'
-);
+    students: 'Beginner');
 
-final List<Course> courses = [_course1,_course3,_course2];
+final List<Course> courses = [_course1, _course3, _course2];

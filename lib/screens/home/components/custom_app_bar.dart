@@ -48,7 +48,7 @@ class CustomAppBar extends StatelessWidget {
                 width: size.width * 0.01,
               ),
               Text(
-                'Sanjar',
+                'Sanzhar',
                 style: TextStyle(
                     color: black, fontWeight: FontWeight.w600, fontSize: 18),
               ),

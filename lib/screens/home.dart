@@ -18,8 +18,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<Home> {
-  List pages = [Media(), Search(), HomeScreen(), Favs(), Profile()];
-  int currentPage = 2;
+  List pages = [Search(), HomeScreen(), Favs(), Profile()];
+  int currentPage = 1;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -42,30 +42,30 @@ class _HomeScreenState extends State<Home> {
             milliseconds: 200,
           ),
           items: <Widget>[
+            // Icon(
+            //   Icons.play_arrow_outlined,
+            //   size: 30,
+            //   color: currentPage == 0 ? white : black,
+            // ),
             Icon(
-              Icons.play_arrow_outlined,
+              Icons.search,
               size: 30,
               color: currentPage == 0 ? white : black,
             ),
             Icon(
-              Icons.search,
+              Icons.home_outlined,
               size: 30,
               color: currentPage == 1 ? white : black,
             ),
             Icon(
-              Icons.home_outlined,
+              Icons.favorite_border_outlined,
               size: 30,
               color: currentPage == 2 ? white : black,
             ),
             Icon(
-              Icons.favorite_border_outlined,
-              size: 30,
-              color: currentPage == 3 ? white : black,
-            ),
-            Icon(
               Icons.person_outline,
               size: 30,
-              color: currentPage == 4 ? white : black,
+              color: currentPage == 3 ? white : black,
             ),
           ],
         ),

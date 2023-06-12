@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../../widgets/MeCard.dart";
+import "../calendar.dart";
 
 class Profile extends StatelessWidget {
   const Profile({
@@ -60,6 +61,18 @@ class Profile extends StatelessWidget {
               ],
             ),
             const Padding(padding: EdgeInsets.all(24)),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Calendar()),
+                );
+              },
+              child: const MeCard(
+                title: "Calendar",
+                hint: "Calendar of workouts",
+              ),
+            ),
             const MeCard(
               title: "My courses",
               hint: "already have 3 courses",
